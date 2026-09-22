@@ -1,0 +1,167 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% Adapted by : Amigoscode (one-line role -- company, date | location)
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\ifdefined\pdfgentounicode\input{glyphtounicode}\fi
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\ifdefined\pdfgentounicode\pdfgentounicode=1\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} -- \textit{#3} & \small #2 $|$ #4 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% Name, then one line: location | phone | email | LinkedIn | GitHub
+\begin{center}
+    \textbf{\Huge \scshape Jane Doe} \\ \vspace{1pt}
+    \small London, UK $|$ +44 7000 000000 $|$ \href{mailto:jane@example.com}{\underline{jane@example.com}} $|$
+    \href{https://linkedin.com/in/janedoe}{\underline{linkedin.com/in/janedoe}} $|$
+    \href{https://github.com/janedoe}{\underline{github.com/janedoe}}
+\end{center}
+
+
+%-----------SUMMARY-----------
+% See docs/SUMMARY.md. Two sentences, 30-45 words, facts the resume backs up.
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Backend Engineer with 6+ years building Java and Spring Boot services for payments and banking, across
+     20+ production services at up to 5K requests per second. Pairs API and data design with hands-on AWS delivery,
+     most recently leading the move of a monolith to event-driven services.
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+% \resumeSubheading{Role}{Start -- End}{Company}{Location}
+% renders as:  Role -- Company                       Start -- End | Location
+% See docs/BULLETS.md for how to write and score each bullet.
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Senior Backend Engineer}{Jan. 2023 -- Present}
+      {Acme Payments}{London, UK}
+      \resumeItemListStart
+        \resumeItem{Cut checkout API p99 latency from 800ms to 250ms by replacing N+1 JPA queries with batched fetches and a Redis cache}
+        \resumeItem{Led the split of the billing monolith into 6 Spring Boot services on Kafka, owning the design and rollout plan}
+        \resumeItem{Mentor 3 engineers and run the team's weekly design review}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Software Engineer}{Jun. 2019 -- Dec. 2022}
+      {Globex Bank}{Manchester, UK}
+      \resumeItemListStart
+        \resumeItem{Built the customer onboarding API in Java 17 and PostgreSQL, used by the web and mobile apps}
+        \resumeItem{Reduced failed deployments by 70\% by introducing contract tests and a GitHub Actions pipeline}
+        \resumeItem{Wrote the team's runbooks for incident response and on-call handover}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Java, SQL, Python, Bash} \\
+     \textbf{Frameworks}{: Spring Boot, Spring Security, Hibernate/JPA, JUnit, Testcontainers} \\
+     \textbf{Infrastructure}{: AWS, Docker, Kubernetes, Kafka, PostgreSQL, Redis, GitHub Actions}
+    }}
+ \end{itemize}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {B.Sc. in Computer Science}{2015 -- 2019}
+      {University of Leeds}{Leeds, UK}
+  \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
