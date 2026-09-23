@@ -1,0 +1,15 @@
+{
+  "name": "amigoscode",
+  "description": "Amigoscode plugins for Claude Code.",
+  "owner": {
+    "name": "Amigoscode",
+    "url": "https://amigoscode.com"
+  },
+  "plugins": [
+    {
+      "name": "resume",
+      "source": "./",
+      "description": "/resume:analyse, /resume:improve and /resume:build: CV review report, bullet-by-bullet rewrite, one-page LaTeX resume."
+    }
+  ]
+}

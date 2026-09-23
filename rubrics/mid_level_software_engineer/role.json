@@ -1,0 +1,33 @@
+{
+  "position_title": "Mid-Level Software Engineer position",
+  "categories": [
+    {
+      "key": "production_delivery",
+      "label": "Production Delivery",
+      "max": 35,
+      "description": "features and services shipped to real users, with the candidate's own contribution and outcomes visible. Duty lists score low; delivered results score high."
+    },
+    {
+      "key": "engineering_quality",
+      "label": "Engineering Quality & Design",
+      "max": 25,
+      "description": "sound design at the component and service level: data modelling, APIs, auth, testing, performance fixes, and reasoned technical decisions. Full system architecture is not expected at this level."
+    },
+    {
+      "key": "technical_skills",
+      "label": "Technical Skills",
+      "max": 25,
+      "description": "solid command of a primary language and framework backed by work evidence, plus working breadth across databases, cloud, containers, CI/CD and testing."
+    },
+    {
+      "key": "ownership_collaboration",
+      "label": "Ownership & Collaboration",
+      "max": 15,
+      "description": "independently owning pieces of work end to end, working across roles and stakeholders, code review, onboarding or helping peers. Formal leadership is a bonus, not a requirement."
+    }
+  ],
+  "bonus_max": 15,
+  "min_final_score": -15,
+  "max_final_score": 115,
+  "bonus_description": "senior-level signals shown early (leading a project, mentoring, designing beyond your area), technical writing or teaching, open source contribution, relevant certifications, side projects with real users."
+}

@@ -1,0 +1,33 @@
+{
+  "position_title": "Senior Software Engineer position",
+  "categories": [
+    {
+      "key": "production_impact",
+      "label": "Production Impact & Ownership",
+      "max": 35,
+      "description": "what was built, owned and operated in production, and the measurable outcomes behind it. Duty lists score low; owned results with numbers score high."
+    },
+    {
+      "key": "system_design",
+      "label": "System Design & Scale",
+      "max": 25,
+      "description": "systems designed or re-architected: distributed services, data and event pipelines, migrations, reliability and performance work. Using a scalable tool is a skill; designing with it is design."
+    },
+    {
+      "key": "technical_leadership",
+      "label": "Technical Leadership & Mentoring",
+      "max": 20,
+      "description": "leading projects or people: tech-lead ownership, mentoring, code review, standards, hiring, cross-team delivery, teaching at scale."
+    },
+    {
+      "key": "technical_depth",
+      "label": "Technical Depth & Breadth",
+      "max": 20,
+      "description": "depth in the primary stack shown through work evidence, plus breadth across data, messaging, cloud, containers, CI/CD, observability, testing and security."
+    }
+  ],
+  "bonus_max": 15,
+  "min_final_score": -15,
+  "max_final_score": 115,
+  "bonus_description": "technical writing or teaching footprint, open source maintainership, founder or first-engineer experience, relevant certifications, side projects with real users."
+}

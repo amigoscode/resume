@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "basics": {
+    "name": "Jane Doe",
+    "location": "London, UK",
+    "phone": "+44 7000 000000",
+    "email": "jane@example.com",
+    "links": [
+      {
+        "label": "linkedin.com/in/janedoe",
+        "url": "https://linkedin.com/in/janedoe"
+      },
+      {
+        "label": "github.com/janedoe",
+        "url": "https://github.com/janedoe"
+      }
+    ]
+  },
+  "target": {
+    "rubric": "senior_software_engineer",
+    "position_title": "Senior Software Engineer position",
+    "job_description": null,
+    "custom_rubric": null
+  },
+  "role_evaluation": {
+    "scores": {
+      "production_impact": {
+        "score": 19,
+        "max": 35,
+        "evidence": "Owns the checkout API at Acme Payments, but only one bullet has a measured outcome; the Globex onboarding API has no scale or result."
+      },
+      "system_design": {
+        "score": 14,
+        "max": 25,
+        "evidence": "Worked on splitting the billing monolith into services, but the design decisions and results aren't described."
+      },
+      "technical_leadership": {
+        "score": 9,
+        "max": 20,
+        "evidence": "Mentions mentoring with no team size or outcome."
+      },
+      "technical_depth": {
+        "score": 15,
+        "max": 20,
+        "evidence": "Java, Spring Boot, Kafka, PostgreSQL and AWS all appear in real work, not just the skills list."
+      }
+    },
+    "bonus_points": {
+      "total": 2,
+      "breakdown": "+1 LinkedIn, +1 GitHub linked."
+    },
+    "deductions": {
+      "total": 0,
+      "reasons": "None."
+    },
+    "key_strengths": [
+      "Solid Java/Spring backend depth shown through work",
+      "Payments domain experience",
+      "Some ownership of a production API"
+    ],
+    "areas_for_improvement": [
+      "Describe the design and outcome of the monolith split",
+      "Add scale (requests, users, services) to the API work",
+      "Give mentoring a team size and result"
+    ]
+  },
+  "summary": {
+    "text": "Results-driven Software Engineer with 6 years of experience delivering high-quality software solutions. Passionate about clean code, cloud, microservices, AI and DevOps.",
+    "score": 4,
+    "criteria": [
+      {
+        "name": "Title + years up front",
+        "status": "pass",
+        "note": "'Software Engineer with 6 years'."
+      },
+      {
+        "name": "A specific, unique fact",
+        "status": "fail",
+        "note": "No scale, domain or result."
+      },
+      {
+        "name": "Real tools and keywords",
+        "status": "partial",
+        "note": "'Cloud, microservices' but no Java, Spring or AWS."
+      },
+      {
+        "name": "Claims backed by the resume",
+        "status": "fail",
+        "note": "Nothing on AI anywhere else."
+      },
+      {
+        "name": "No filler or objective",
+        "status": "fail",
+        "note": "'Results-driven', 'passionate about'."
+      },
+      {
+        "name": "Two sentences, \u2264 45 words",
+        "status": "pass",
+        "note": "Two sentences, 24 words."
+      }
+    ],
+    "questions": [
+      "Which role are you targeting next?",
+      "What's the one fact a recruiter should remember?"
+    ],
+    "answers": null,
+    "rewrite": null,
+    "new_score": null,
+    "plan": "rewrite"
+  },
+  "experience": [
+    {
+      "role": "Senior Backend Engineer",
+      "company": "Acme Payments",
+      "location": "London, UK",
+      "start": "Jan. 2023",
+      "end": "Present",
+      "bullets": [
+        {
+          "id": "e1-b1",
+          "text": "Improved checkout API performance by fixing database queries",
+          "score": 5,
+          "reason": "A real outcome, but no measure and a vague 'how'.",
+          "plan": "xyz",
+          "merge_into": null,
+          "questions": [
+            "Latency before and after, roughly?",
+            "What was the fix: batching, caching, indexes?"
+          ],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        },
+        {
+          "id": "e1-b2",
+          "text": "Worked on splitting the billing monolith into microservices",
+          "score": 4,
+          "reason": "'Worked on' hides ownership; no design or result.",
+          "plan": "strong",
+          "merge_into": null,
+          "questions": [
+            "Did you lead the design? How many services, on what (Kafka, REST)?",
+            "What did the split make possible?"
+          ],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        },
+        {
+          "id": "e1-b3",
+          "text": "Mentored junior engineers",
+          "score": 3,
+          "reason": "No team size or outcome.",
+          "plan": "strong",
+          "merge_into": null,
+          "questions": [
+            "How many engineers, and anything you run (reviews, design sessions)?"
+          ],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        }
+      ]
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Globex Bank",
+      "location": "Manchester, UK",
+      "start": "Jun. 2019",
+      "end": "Dec. 2022",
+      "bullets": [
+        {
+          "id": "e2-b1",
+          "text": "Built the customer onboarding API in Java 17 and PostgreSQL, used by the web and mobile apps",
+          "score": 7,
+          "reason": "Clear ownership, tech and users.",
+          "plan": "keep",
+          "merge_into": null,
+          "questions": [],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        },
+        {
+          "id": "e2-b2",
+          "text": "Responsible for CI/CD pipelines",
+          "score": 2,
+          "reason": "A duty; no change described.",
+          "plan": "xyz",
+          "merge_into": null,
+          "questions": [
+            "What did you change in the pipeline?",
+            "Did failed deployments or build times improve?"
+          ],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        },
+        {
+          "id": "e2-b3",
+          "text": "Wrote documentation",
+          "score": 2,
+          "reason": "Low signal.",
+          "plan": "cut",
+          "merge_into": null,
+          "questions": [],
+          "answers": null,
+          "rewrite": null,
+          "new_score": null,
+          "format": null
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Languages",
+      "items": [
+        "Java",
+        "SQL",
+        "Python",
+        "Bash"
+      ]
+    },
+    {
+      "label": "Frameworks",
+      "items": [
+        "Spring Boot",
+        "Spring Security",
+        "Hibernate/JPA",
+        "JUnit",
+        "Testcontainers"
+      ]
+    },
+    {
+      "label": "Infrastructure",
+      "items": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Kafka",
+        "PostgreSQL",
+        "Redis",
+        "GitHub Actions"
+      ]
+    }
+  ],
+  "skills_review": {
+    "score": 8,
+    "notes": [
+      "Well grouped and relevant to backend roles.",
+      "Every major tool also appears in a bullet, which backs it up."
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.Sc. in Computer Science",
+      "school": "University of Leeds",
+      "location": "Leeds, UK",
+      "start": "2015",
+      "end": "2019",
+      "score": 8,
+      "notes": [
+        "Relevant and one line: right for 6 years of experience."
+      ],
+      "questions": [],
+      "rewrite": null
+    }
+  ],
+  "extra_sections": [],
+  "format_checks": [
+    {
+      "check": "Fits on one page",
+      "status": "pass",
+      "note": "Half a page to spare."
+    },
+    {
+      "check": "Role \u2013 Company | Date | Location on one line",
+      "status": "pass",
+      "note": "Consistent."
+    },
+    {
+      "check": "ATS-readable",
+      "status": "pass",
+      "note": "Single column, no graphics."
+    }
+  ],
+  "top_fixes": [
+    "Put the numbers behind the checkout API fix into an XYZ bullet.",
+    "Show that you led the monolith split, with the design and the result.",
+    "Replace the summary's filler with scale, domain and stack."
+  ],
+  "analysed_on": "2026-09-23"
+}

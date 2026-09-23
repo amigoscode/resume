@@ -1,0 +1,33 @@
+{
+  "position_title": "Engineering Manager position",
+  "categories": [
+    {
+      "key": "people_leadership",
+      "label": "People Leadership & Team Growth",
+      "max": 30,
+      "description": "hiring, growing, retaining and managing engineers: team size and span, performance management, career development, promotions, and how the team got better under this person."
+    },
+    {
+      "key": "delivery_execution",
+      "label": "Delivery & Execution",
+      "max": 25,
+      "description": "outcomes shipped through the team: roadmaps delivered, reliability and operational results, planning and process, and the measurable business impact of what the team built."
+    },
+    {
+      "key": "technical_judgement",
+      "label": "Technical Judgement",
+      "max": 20,
+      "description": "the technical depth to make credible architecture and trade-off calls, guide design reviews, and be trusted by senior engineers; usually grounded in a strong prior IC track record."
+    },
+    {
+      "key": "strategy_influence",
+      "label": "Strategy & Cross-functional Influence",
+      "max": 25,
+      "description": "partnership with product, business and customers; org design and prioritisation; communicating upward and outward; shaping what the team works on, not just how."
+    }
+  ],
+  "bonus_max": 15,
+  "bonus_description": "managing managers or multiple teams, org-wide initiatives (hiring programmes, platform strategy, engineering standards), budget or vendor ownership, public writing or talks on engineering leadership, building a team from scratch, leading distributed or remote teams.",
+  "min_final_score": -15,
+  "max_final_score": 115
+}

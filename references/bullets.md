@@ -3,7 +3,7 @@
 ## Contents
 - The target: a mix, not a wall of metrics
 - Scoring rubric (0–10)
-- Step 1: Score every bullet in the CV
+- Step 1: Score every bullet
 - Step 2: Interview, one bullet at a time
 - Step 3: Rewrite
 - Worked examples
@@ -38,21 +38,20 @@ If they don't know a figure, write the strongest honest bullet without one.
 Deduct a point for weak openers ("Helped", "Involved in", "Responsible for", "Worked on") when they hide what the person actually did.
 Two bullets that are the X and the Z of one story (e.g. "Revamped IVR design" and "Reduced wait time by 90%") should be merged; say so when scoring.
 
-## Step 1: Score every bullet in the CV
+## Step 1: Score every bullet (/resume:analyse)
 
-1. Prepend the score to each bullet in the `.tex` as `[N] -- ` so the person can see it in the PDF:
-   `\resumeItem{[3] -- Design and develop IVR, CVP and contact center applications}`
-2. Rebuild and open the PDF.
-3. In chat, give the overall average, a per-role table (scores and average), the strongest and weakest bullets with a one-line reason each, and the 2–3 patterns pulling scores down (e.g. "current role is weakest, and it's what recruiters read first").
-4. Do not rewrite yet. Ask if they want to start the interview.
+1. Score each bullet with the rubric above and write a one-line `reason` in `review.json`.
+2. Give it a `plan` (xyz, strong, keep, merge, cut) with the balance above, and 2–5 questions for xyz and strong bullets.
+3. The branded report shows every bullet with its score, plan and questions. A preview resume with `[N] -- ` in front of each bullet can be built with `scripts/render_tex.py --scores`.
+4. Don't rewrite yet.
 
-## Step 2: Interview, one bullet at a time
+## Step 2: Interview, one bullet at a time (/resume:improve)
 
 Start with the first bullet of the most recent role and go in order, unless the person picks another.
 For each bullet:
 
 1. Quote it with its score and say in one line why it has that score.
-2. Ask 3–5 short questions, grouped by what they unlock. Say rough answers are fine:
+2. Ask 2–5 short questions, grouped by what they unlock. Say rough answers are fine:
    - **Scope**: who was it for, how big, how many?
    - **Ownership**: led it, or part of a team?
    - **Tech / how (Z)**: what exactly was built, with which tools?
@@ -68,8 +67,7 @@ Keep each turn to one bullet so the person isn't buried in questions.
 - One line where possible (about 110 characters at 11pt), never more than two.
 - Put the result first when there is one: "Cut X by Y by doing Z" reads stronger than "Did Z, which cut X".
 - Keep 3–6 bullets per recent role and 2–3 for older ones. Drop or merge the weakest to keep one page.
-- Replace the old bullet in the `.tex`, keep the `[N] -- ` prefix with the new score while the review is ongoing, and rebuild.
-- When all bullets are done, strip every `[N] -- ` prefix and do a final build.
+- Save the rewrite, new score and format (`xyz` or `strong`) to the bullet in `review.json`; `/resume:build` renders the final resume from it.
 
 ## Worked examples
 

@@ -1,0 +1,33 @@
+{
+  "position_title": "Junior Software Engineer position",
+  "categories": [
+    {
+      "key": "practical_experience",
+      "label": "Practical Experience",
+      "max": 30,
+      "description": "internships, first roles, freelance or volunteer work where code reached real users. Any production exposure counts; described outcomes count more."
+    },
+    {
+      "key": "projects_portfolio",
+      "label": "Projects & Portfolio",
+      "max": 30,
+      "description": "personal, academic or research projects that show real engineering: non-trivial scope, working code that can be inspected or run, and clear explanation of what was built and why."
+    },
+    {
+      "key": "technical_foundations",
+      "label": "Technical Foundations",
+      "max": 25,
+      "description": "command of at least one language and framework, plus fundamentals: data structures, databases, APIs, version control, testing and basic deployment."
+    },
+    {
+      "key": "learning_initiative",
+      "label": "Learning & Initiative",
+      "max": 15,
+      "description": "curiosity and drive beyond the job description: open source, research, writing, certifications, hackathons, communities, or teaching others."
+    }
+  ],
+  "bonus_max": 15,
+  "bonus_description": "published research or technical writing, contributions to other people's open source projects, relevant certifications, hackathon results, side projects with real users, evidence of shipping fast in a first role.",
+  "min_final_score": -15,
+  "max_final_score": 115
+}
