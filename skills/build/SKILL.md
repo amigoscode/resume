@@ -37,6 +37,10 @@ If there's no `review.json`, the person wants a straight conversion. Extract the
    - **More than 2 pages**: the limit is 2 pages; one page is fine but not required. Say exactly what spills onto page 3, and offer options: cut the lowest-scoring remaining bullets in older roles, trim the skills lines, or switch to 10pt (change `11pt` in the `\documentclass` line of the generated `.tex`). Let the person choose; don't cut their content silently.
 5. Look at the PDF (`pdftoppm -png -r 80` a page and view it) for anything odd: stray `[N]` prefixes, escaped characters, empty sections.
 
+## Only the .tex
+
+The `.tex` is always written first, so it exists even if the PDF build fails or no compiler is installed. If the person only wants the LaTeX file (e.g. to edit it or compile it on Overleaf), skip `build.sh`, give them the `.tex` path, and tell them it compiles on Overleaf as-is.
+
 ## Layout rules
 
 These came from real feedback; keep them unless the person asks otherwise:
