@@ -46,7 +46,7 @@ The person can say "skip", "keep", "cut" or "merge with e2-b1" at any time. Upda
 
 ## After the bullets
 
-1. **Summary**: ask the summary questions, then propose a two-sentence rewrite (30–45 words) built from the strongest facts that are now in the bullets. Save it once they approve.
+1. **Summary**: if `summary.include` is `null`, first ask whether they want a summary on the resume at all. If not, set `include` to false and skip to the next step. Otherwise ask the summary questions, then propose a two-sentence rewrite (30–45 words) built from the strongest facts that are now in the bullets. Save it once they approve.
 2. **Education and skills**: ask the education questions (e.g. certifications), and propose trims for the skills lines from the analysis notes. Apply them once they approve.
 3. **Preview**: render a scored preview and open it:
 

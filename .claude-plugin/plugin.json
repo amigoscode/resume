@@ -1,7 +1,7 @@
 {
   "name": "resume",
   "version": "1.0.0",
-  "description": "Analyse a CV against a hiring rubric with an Amigoscode-branded report, improve every bullet with you (balanced XYZ and non-metric), and build a one-page LaTeX resume.",
+  "description": "Analyse a CV against a hiring rubric with an Amigoscode-branded report, improve every bullet with you (balanced XYZ and non-metric), and build a LaTeX resume of up to 2 pages.",
   "author": { "name": "Amigoscode", "url": "https://amigoscode.com" },
   "homepage": "https://github.com/amigoscode/resume",
   "repository": "https://github.com/amigoscode/resume",

@@ -27,6 +27,9 @@ fi
 pages="$(pdfinfo "$pdf" 2>/dev/null | awk '/^Pages:/ {print $2}')"
 echo "Built: $pdf"
 echo "Pages: ${pages:-unknown}"
+if [ -n "${pages:-}" ] && [ "$pages" -gt 2 ]; then
+  echo "Warning: $pages pages; the limit is 2."
+fi
 
 # Overfull hboxes > 1pt usually mean a role/company/date line or skills line is too long for one row.
 if [ -f "$base.log" ]; then

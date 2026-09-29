@@ -1,6 +1,6 @@
 ---
 name: build
-description: Build the final one-page LaTeX resume and PDF from a reviewed CV, on a modified Jake's Resume template (name plus one contact line, "Role – Company" with "date | location", Summary → Experience → Skills → Education). Uses the rewrites from /resume:improve, checks the resume fits one page and nothing runs past the margin, and outputs a clean .tex and .pdf. Use when someone wants the final resume, a LaTeX or "lex" version of their CV, a Jake's-template resume, or a PDF of the improved CV. Final step of /resume:analyse → /resume:improve → /resume:build; also works straight from a CV with no review.
+description: Build the final LaTeX resume (2 pages max) and PDF from a reviewed CV, on a modified Jake's Resume template (name plus one contact line, "Role – Company" with "date | location", Summary → Experience → Skills → Education). Uses the rewrites from /resume:improve, asks whether to include a summary, checks the resume is 2 pages or fewer and nothing runs past the margin, and outputs a clean .tex and .pdf. Use when someone wants the final resume, a LaTeX or "lex" version of their CV, a Jake's-template resume, or a PDF of the improved CV. Final step of /resume:analyse → /resume:improve → /resume:build; also works straight from a CV with no review.
 ---
 
 # /resume:build
@@ -22,8 +22,9 @@ If there's no `review.json`, the person wants a straight conversion. Extract the
 
 ## Steps
 
-1. Check for unfinished work. If some `xyz` or `strong` bullets have no `rewrite`, say how many and ask whether to build anyway (they'll use the original text) or go back to `/resume:improve`.
-2. Render and build:
+1. Ask about the summary if `summary.include` is `null`: "Do you want a professional summary at the top, or go straight to Experience?" Save the answer. When it's false, the summary is left out of the resume.
+2. Check for unfinished work. If some `xyz` or `strong` bullets have no `rewrite`, say how many and ask whether to build anyway (they'll use the original text) or go back to `/resume:improve`.
+3. Render and build:
 
    ```bash
    python3 <plugin-root>/scripts/render_tex.py ./<first-last>/review.json ./<first-last>/<First_Last>_Resume.tex
@@ -31,10 +32,10 @@ If there's no `review.json`, the person wants a straight conversion. Extract the
    ```
 
    If no LaTeX compiler is installed, suggest `brew install tectonic` (about 20 MB, builds in seconds). Avoid Docker TeX images: the multi-GB download makes the first build slow.
-3. Fix what the build script reports:
+4. Fix what the build script reports:
    - **Text past the margin**: a role, company, degree or skills line is too long. Shorten it in `review.json` (e.g. drop "Faculty of ..." from a university) and rebuild. Tectonic doesn't fail on this, so always check the warning.
-   - **More than one page**: say exactly what spills over, and offer options: cut the lowest-scoring remaining bullets in older roles, trim the skills lines, or switch to 10pt (change `11pt` in the `\documentclass` line of the generated `.tex`). Let the person choose; don't cut their content silently.
-4. Look at the PDF (`pdftoppm -png -r 80` a page and view it) for anything odd: stray `[N]` prefixes, escaped characters, empty sections.
+   - **More than 2 pages**: the limit is 2 pages; one page is fine but not required. Say exactly what spills onto page 3, and offer options: cut the lowest-scoring remaining bullets in older roles, trim the skills lines, or switch to 10pt (change `11pt` in the `\documentclass` line of the generated `.tex`). Let the person choose; don't cut their content silently.
+5. Look at the PDF (`pdftoppm -png -r 80` a page and view it) for anything odd: stray `[N]` prefixes, escaped characters, empty sections.
 
 ## Layout rules
 

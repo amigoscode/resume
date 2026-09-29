@@ -150,7 +150,7 @@ def build_html(r: dict) -> str:
     cards = [
         ("Role fit", f"{fit['total']}", "/ 100", "" if not fit["has"] else ("high" if float(fit["total"]) >= 70 else "low" if float(fit["total"]) < 50 else "mid")),
         ("Bullets", f"{avg}", f"avg / 10 · {at7} of {len(scored)} at 7+", tone10(avg)),
-        ("Summary", f"{summ.get('score', '–')}", "/ 10", tone10(summ.get("score"))),
+        ("Summary", "Off", "not included", "") if summ.get("include") is False else ("Summary", f"{summ.get('score', '–')}", "/ 10", tone10(summ.get("score"))),
         ("Education", f"{edu_avg if edu_avg is not None else '–'}", "/ 10", tone10(edu_avg)),
         ("Skills", f"{skills_score if skills_score is not None else '–'}", "/ 10", tone10(skills_score)),
         ("Format", f"{passed}/{len(checks)}", "checks passed", "high" if checks and passed == len(checks) else "mid"),
@@ -180,7 +180,7 @@ def build_html(r: dict) -> str:
   <div class="steps">
     <div class="step done"><b>1 · /resume:analyse</b><span>This report: every section scored, questions for each weak bullet.</span></div>
     <div class="step"><b>2 · /resume:improve</b><span>Answer the questions one bullet at a time. Claude rewrites each one with you.</span></div>
-    <div class="step"><b>3 · /resume:build</b><span>Final one-page LaTeX resume and PDF.</span></div>
+    <div class="step"><b>3 · /resume:build</b><span>Final LaTeX resume and PDF, 2 pages max.</span></div>
   </div>
 </section>"""
 
@@ -223,7 +223,7 @@ def build_html(r: dict) -> str:
   <blockquote>{e(summ.get('text', 'No summary on the current resume.'))}</blockquote>
   <table class="crit">{crit_rows}</table>
   {'<h4>Answer these to rewrite it</h4><ol class="qs">' + sq + '</ol>' if sq else ''}
-  <p class="note">The rewrite will be two sentences, about 30–45 words, built only from facts the resume can back up.</p>
+  <p class="note">{"You chose to leave the summary off the resume. The score is here for reference only." if summ.get("include") is False else "The rewrite will be two sentences, about 30–45 words, built only from facts the resume can back up. Not sure you want a summary? It's optional: you'll be asked before the build."}</p>
 </section>""" if summ else ""
 
     # ---------- experience ----------

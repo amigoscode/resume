@@ -41,7 +41,8 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
     "answers": null,                            // filled by /resume:improve
     "rewrite": null,
     "new_score": null,
-    "plan": "rewrite"                           // rewrite | keep | cut
+    "plan": "rewrite",                          // rewrite | keep | cut
+    "include": null                             // does the person want a summary? true | false | null (not asked yet)
   },
 
   "experience": [
@@ -89,7 +90,7 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
   "extra_sections": [],                         // [{ "title": "Certifications", "items": ["AWS SAA (2024)"] }]
 
   "format_checks": [
-    { "check": "Fits on one page", "status": "fail", "note": "Skills spills onto page 2" }
+    { "check": "2 pages or fewer", "status": "fail", "note": "Education spills onto page 3" }
   ],
 
   "top_fixes": ["...", "...", "..."],           // the 3 changes that would move the resume most, in order

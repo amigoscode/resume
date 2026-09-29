@@ -26,6 +26,8 @@ The plugin root is two directories above this skill's base directory. Paths belo
 
 Read the CV (PDF with the Read tool, or pasted text). Two-column CVs often extract out of order, so check the page image if the text looks jumbled.
 
+Ask whether they want a professional summary on the resume (some people prefer to go straight to Experience). Record it in `summary.include` (true or false). If they don't say, leave it `null`: still score any existing summary, and `/resume:build` will ask before building.
+
 Work out the target role: from what the person says, a job description they paste, or their current title. Pick the closest rubric under `rubrics/`. If none fits (a solutions architect, designer, PM or contact center role, for example), write a custom rubric with the same shape as `role.json`: four categories summing to 100, a bonus up to 15, and a one-line description per category. Put it in `target.custom_rubric` and set `target.rubric` to `"custom"`. Say which rubric you used, and why, in the chat reply.
 
 ### 2. Extract faithfully
@@ -39,7 +41,7 @@ Fill `basics`, `experience`, `skills` and `education` exactly as the CV says, cl
 - **Summary**: score it with `references/summary.md` and fill `criteria` with pass, partial or fail and a note for each.
 - **Skills**: score 0–10 on relevance to the target, grouping, evidence in bullets, and padding. Give 2–4 notes.
 - **Education**: score 0–10 per entry. Check relevance, format, and whether certifications or training belong in their own line. Give notes, plus questions if something is missing.
-- **Format checks**: fits on one page (render with `scripts/render_tex.py` and run `scripts/build.sh` to check), consistent dates, one-line role headers, ATS-readable, real contact details.
+- **Format checks**: 2 pages or fewer (render with `scripts/render_tex.py` and run `scripts/build.sh` to check), consistent dates, one-line role headers, ATS-readable, real contact details.
 
 ### 4. Plan the improvements, with a balance
 
@@ -48,7 +50,7 @@ Give every bullet a `plan`:
 - `strong`: it gets its strength from scope, ownership, specific tech and outcome in words, with no metric.
 - `keep`: already 7 or above.
 - `merge`: its facts belong in another bullet. Set `merge_into`.
-- `cut`: low signal, and cutting it helps the resume fit one page.
+- `cut`: low signal; cutting it makes the resume tighter, and is needed if it runs past 2 pages.
 
 Keep `xyz` to roughly 30–40% of the kept bullets (xyz + strong + keep), never more than half. A resume where every line has a percentage reads as fabricated, and the person asked for a balance. The report shows the mix, and warns if it's over 50%.
 

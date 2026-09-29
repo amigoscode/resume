@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render a review.json into a one-page LaTeX resume on the bundled template.
+"""Render a review.json into a LaTeX resume (2 pages max) on the bundled template.
 
     python3 render_tex.py review.json Out_Resume.tex [--scores]
 
@@ -139,7 +139,7 @@ def main() -> None:
 
     body = ["\\begin{document}\n", "%----------HEADING----------", header(r["basics"])]
     summary = r.get("summary") or {}
-    if summary.get("plan") != "cut" and (summary.get("rewrite") or summary.get("text")):
+    if summary.get("include") is not False and summary.get("plan") != "cut" and (summary.get("rewrite") or summary.get("text")):
         body += ["%-----------SUMMARY-----------", paragraph_section("Summary", summary.get("rewrite") or summary["text"])]
     body += ["%-----------EXPERIENCE-----------", experience(r.get("experience", []), args.scores)]
     if r.get("skills"):

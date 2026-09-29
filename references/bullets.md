@@ -66,7 +66,7 @@ Keep each turn to one bullet so the person isn't buried in questions.
 - Start with a strong past-tense verb (present tense for the current role): Architected, Built, Cut, Led, Migrated, Automated.
 - One line where possible (about 110 characters at 11pt), never more than two.
 - Put the result first when there is one: "Cut X by Y by doing Z" reads stronger than "Did Z, which cut X".
-- Keep 3–6 bullets per recent role and 2–3 for older ones. Drop or merge the weakest to keep one page.
+- Keep 3–6 bullets per recent role and 2–3 for older ones. Drop or merge the weakest to stay within 2 pages.
 - Save the rewrite, new score and format (`xyz` or `strong`) to the bullet in `review.json`; `/resume:build` renders the final resume from it.
 
 ## Worked examples

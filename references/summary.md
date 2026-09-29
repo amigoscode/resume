@@ -16,7 +16,7 @@ Based on the guidance at https://www.faangtechleads.com/resume/professional-summ
 - **Claims the resume can't back up**. If the summary says "AI-powered", some bullet should show it.
 - **Filler anyone could write**: "proven ability to exceed expectations", "passionate about", "team player", "results-driven".
 
-The section is optional. If the resume doesn't fit on one page, a weak summary is the first thing to cut.
+The section is optional: always ask whether the person wants one (stored in `summary.include`). If the resume runs past 2 pages, a weak summary is the first thing to cut.
 
 ## Length
 

@@ -1,8 +1,8 @@
 # resume
 
-A Claude Code plugin that reviews your CV like a hiring rubric would, helps you rewrite it one bullet at a time, and builds a clean one-page LaTeX resume.
+A Claude Code plugin that reviews your CV like a hiring rubric would, helps you rewrite it one bullet at a time, and builds a clean LaTeX resume of one or two pages.
 
-| Branded review report | Final one-page resume |
+| Branded review report | Final resume |
 |---|---|
 | [![Review report](assets/sample-report.png)](examples/jane-doe/Jane_Doe_CV_Review.pdf) | [![Resume](assets/sample.png)](assets/sample.pdf) |
 
@@ -10,9 +10,9 @@ A Claude Code plugin that reviews your CV like a hiring rubric would, helps you 
 
 | Command | What it does | Output |
 |---|---|---|
-| `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. It plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (Amigoscode branded) and `review.json` |
+| `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. Asks whether you want a summary at all. It plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (Amigoscode branded) and `review.json` |
 | `/resume:improve` | Goes one bullet at a time: asks the questions, rewrites the bullet with your answers, and re-scores it. Then does the same for the summary and education. It keeps a balance: about a third of the bullets get XYZ with a real number, and the rest are strong without one. It never invents numbers. | updated `review.json` and a scored preview PDF |
-| `/resume:build` | Renders the final resume on a modified [Jake's Resume](https://github.com/jakegut/resume) template. It checks the resume fits one page and that no line runs past the margin. | `<First_Last>_Resume.tex` and `.pdf` |
+| `/resume:build` | Renders the final resume on a modified [Jake's Resume](https://github.com/jakegut/resume) template. Asks whether to include a summary, checks the resume is no more than 2 pages and that no line runs past the margin. | `<First_Last>_Resume.tex` and `.pdf` |
 
 Everything for one person lives in `./<first-last>/`. `review.json` carries the state between commands, so you can stop and pick up again later.
 
