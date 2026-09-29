@@ -1,6 +1,6 @@
 # review.json
 
-One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates it, `/resume:improve` fills in answers and rewrites, `/resume:build` renders the final resume from it. Everything is plain text; the scripts escape LaTeX and HTML.
+One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates it. `/resume:improve` fills in the bullet answers and rewrites, `/resume:skills` tailors the skills, `/resume:summary` writes the summary, and `/resume:build` renders the final resume from it. Everything is plain text; the scripts escape LaTeX and HTML.
 
 ```jsonc
 {
@@ -72,6 +72,18 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
 
   "skills": [{ "label": "Languages", "items": ["Java", "SQL"] }],
   "skills_review": { "score": 7, "notes": ["..."] },
+  "skills_tailoring": {                         // filled by /resume:skills
+    "mode": "job_description",                  // job_description | market | both
+    "job_description": "pasted JD text",
+    "market_sources": [{ "title": "Senior Java Engineer", "company": "Acme", "url": "https://..." }],
+    "keywords": [
+      { "term": "Kubernetes", "required": true, "count": 5, "status": "missing" }
+      // status: evidenced | listed_only | in_bullets_only | missing | irrelevant | added (confirmed by the person) | declined
+    ],
+    "coverage_before": 0.55,                    // share of required keywords on the resume
+    "coverage_after": 0.8,
+    "skills_before": []                         // the skills list before tailoring
+  },
 
   "education": [
     {
@@ -93,6 +105,7 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
     { "check": "2 pages or fewer", "status": "fail", "note": "Education spills onto page 3" }
   ],
 
+  "progress": { "bullets_done": false, "skills_done": false, "summary_done": false },   // set with scripts/progress.py --mark
   "top_fixes": ["...", "...", "..."],           // the 3 changes that would move the resume most, in order
   "analysed_on": "2026-09-23"
 }

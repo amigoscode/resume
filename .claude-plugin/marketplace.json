@@ -9,7 +9,7 @@
     {
       "name": "resume",
       "source": "./",
-      "description": "/resume:analyse, /resume:improve and /resume:build: CV review report, bullet-by-bullet rewrite, LaTeX resume (2 pages max)."
+      "description": "/resume:analyse \u2192 improve \u2192 skills \u2192 summary \u2192 build: CV review report, bullet-by-bullet rewrite, JD-tailored skills, LaTeX resume (2 pages max)."
     }
   ]
 }

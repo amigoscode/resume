@@ -1,6 +1,6 @@
 ---
 name: improve
-description: Interactive resume improvement. Walks the person through their CV one bullet at a time, asks the questions from the analysis, and rewrites each bullet with them, keeping a natural balance of Google XYZ bullets and strong non-metric bullets and never inventing numbers. Then does the same for the summary and education. Use after /resume:analyse, or whenever someone wants help rewriting resume bullets, applying the XYZ formula, making experience "stronger", or answering questions to improve their CV. Second step of /resume:analyse → /resume:improve → /resume:build.
+description: Interactive resume improvement. Walks the person through their CV one bullet at a time, asks the questions from the analysis, and rewrites each bullet with them, keeping a natural balance of Google XYZ bullets and strong non-metric bullets and never inventing numbers. Then covers education. Use after /resume:analyse, or whenever someone wants help rewriting resume bullets, applying the XYZ formula, making experience "stronger", or answering questions to improve their CV. Step 2 of /resume:analyse → /resume:improve → /resume:skills → /resume:summary → /resume:build.
 ---
 
 # /resume:improve
@@ -46,8 +46,16 @@ The person can say "skip", "keep", "cut" or "merge with e2-b1" at any time. Upda
 
 ## After the bullets
 
-1. **Summary**: if `summary.include` is `null`, first ask whether they want a summary on the resume at all. If not, set `include` to false and skip to the next step. Otherwise ask the summary questions, then propose a two-sentence rewrite (30–45 words) built from the strongest facts that are now in the bullets. Save it once they approve.
-2. **Education and skills**: ask the education questions (e.g. certifications), and propose trims for the skills lines from the analysis notes. Apply them once they approve.
+Skills and the summary are not part of this step. They come after the bullets (`/resume:skills`, then `/resume:summary`), because both are built from the finished bullets. If the person asks to do them now, finish or settle the remaining bullets first.
+
+1. **Education**: ask the education questions (e.g. which trainings are formal certifications), and apply changes once they approve. Confirmed certifications go in `extra_sections` as a Certifications line.
+2. **Mark the bullets done** once every `xyz` and `strong` bullet has a rewrite, or has been switched to keep, merge or cut:
+
+   ```bash
+   python3 <plugin-root>/scripts/progress.py ./<first-last>/review.json --mark bullets
+   ```
+
+   The script refuses if any bullets are still pending, and lists them.
 3. **Preview**: render a scored preview and open it:
 
    ```bash
@@ -55,4 +63,4 @@ The person can say "skip", "keep", "cut" or "merge with e2-b1" at any time. Upda
    <plugin-root>/scripts/build.sh ./<first-last>/<First_Last>_Resume_scored.tex --open
    ```
 
-4. Give the final mix and average (before → after), then point to `/resume:build` for the final version.
+4. Give the final mix and average (before → after), then point to `/resume:skills` to tailor the skills to a job description or the market.

@@ -1,6 +1,6 @@
 ---
 name: build
-description: Build the final LaTeX resume (2 pages max) and PDF from a reviewed CV, on a modified Jake's Resume template (name plus one contact line, "Role – Company" with "date | location", Summary → Experience → Skills → Education). Uses the rewrites from /resume:improve, asks whether to include a summary, checks the resume is 2 pages or fewer and nothing runs past the margin, and outputs a clean .tex and .pdf. Use when someone wants the final resume, a LaTeX or "lex" version of their CV, a Jake's-template resume, or a PDF of the improved CV. Final step of /resume:analyse → /resume:improve → /resume:build; also works straight from a CV with no review.
+description: Build the final LaTeX resume (2 pages max) and PDF from a reviewed CV, on a modified Jake's Resume template (name plus one contact line, "Role – Company" with "date | location", Summary → Experience → Skills → Education). Uses the rewrites from /resume:improve, asks whether to include a summary, checks the resume is 2 pages or fewer and nothing runs past the margin, and outputs a clean .tex and .pdf. Use when someone wants the final resume, a LaTeX or "lex" version of their CV, a Jake's-template resume, or a PDF of the improved CV. Final step of /resume:analyse → /resume:improve → /resume:skills → /resume:summary → /resume:build; also works straight from a CV with no review.
 ---
 
 # /resume:build
@@ -22,7 +22,8 @@ If there's no `review.json`, the person wants a straight conversion. Extract the
 
 ## Steps
 
-1. Ask about the summary if `summary.include` is `null`: "Do you want a professional summary at the top, or go straight to Experience?" Save the answer. When it's false, the summary is left out of the resume.
+1. Check progress with `python3 <plugin-root>/scripts/progress.py ./<first-last>/review.json`. If bullets, skills or summary aren't done, say which ones, and ask whether to build anyway (e.g. for a draft) or finish those steps first.
+   Ask about the summary if `summary.include` is `null`: "Do you want a professional summary at the top, or go straight to Experience?" Save the answer. When it's false, the summary is left out of the resume.
 2. Check for unfinished work. If some `xyz` or `strong` bullets have no `rewrite`, say how many and ask whether to build anyway (they'll use the original text) or go back to `/resume:improve`.
 3. Render and build:
 

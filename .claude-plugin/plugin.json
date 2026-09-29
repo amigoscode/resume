@@ -1,7 +1,7 @@
 {
   "name": "resume",
-  "version": "1.1.0",
-  "description": "Analyse a CV against a hiring rubric with an Amigoscode-branded report, improve every bullet with you (balanced XYZ and non-metric), and build a LaTeX resume of up to 2 pages.",
+  "version": "1.2.0",
+  "description": "Analyse a CV against a hiring rubric with an Amigoscode-branded report, improve every bullet with you (balanced XYZ and non-metric), tailor skills to job descriptions, write the summary last, and build a LaTeX resume of up to 2 pages.",
   "author": {
     "name": "Amigoscode",
     "url": "https://amigoscode.com"

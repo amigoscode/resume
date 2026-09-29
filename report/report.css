@@ -59,9 +59,9 @@ h4 { font-family: 'Inter', sans-serif; font-weight: 700; color: var(--navy); fon
 .stat .unit { font-size: 8.5pt; color: var(--muted); }
 
 /* steps */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; }
-.step { border: 1px dashed var(--purple-mid); border-radius: 4mm; padding: 3mm 4mm; font-size: 8.8pt; }
-.step b { display: block; font-family: 'JetBrains Mono', monospace; color: var(--purple); font-size: 8.5pt; margin-bottom: 1mm; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; }
+.step { border: 1px dashed var(--purple-mid); border-radius: 3mm; padding: 2.5mm 3mm; font-size: 7.8pt; line-height: 1.35; }
+.step b { display: block; font-family: 'JetBrains Mono', monospace; color: var(--purple); font-size: 7.5pt; margin-bottom: 1mm; }
 .step.done { background: var(--purple-soft); border-style: solid; }
 
 /* role fit */

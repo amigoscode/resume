@@ -1,6 +1,6 @@
 ---
 name: analyse
-description: Full analysis of a CV or resume. Scores it against a hiring rubric for the target role (hiring-agent style, intern to senior engineer or engineering manager, or a custom rubric for any other role), scores every experience bullet 0-10, the professional summary, skills, education and format, writes the questions needed to improve each weak bullet, and produces an Amigoscode-branded PDF report of what to improve. Use when someone shares a CV and wants it reviewed, rated, scored, critiqued, "analysed", checked against a role, or asks what to improve, even if they don't say "analyse". First step of /resume:analyse → /resume:improve → /resume:build.
+description: Full analysis of a CV or resume. Scores it against a hiring rubric for the target role (hiring-agent style, intern to senior engineer or engineering manager, or a custom rubric for any other role), scores every experience bullet 0-10, the professional summary, skills, education and format, writes the questions needed to improve each weak bullet, and produces an Amigoscode-branded PDF report of what to improve. Use when someone shares a CV and wants it reviewed, rated, scored, critiqued, "analysed", checked against a role, or asks what to improve, even if they don't say "analyse". Step 1 of /resume:analyse → /resume:improve → /resume:skills → /resume:summary → /resume:build.
 ---
 
 # /resume:analyse
@@ -26,7 +26,7 @@ The plugin root is two directories above this skill's base directory. Paths belo
 
 Read the CV (PDF with the Read tool, or pasted text). Two-column CVs often extract out of order, so check the page image if the text looks jumbled.
 
-Ask whether they want a professional summary on the resume (some people prefer to go straight to Experience). Record it in `summary.include` (true or false). If they don't say, leave it `null`: still score any existing summary, and `/resume:build` will ask before building.
+Score any existing summary, but leave `summary.include` as `null` unless the person has already said whether they want one. `/resume:summary` asks later. If they paste a job description, save it to `target.job_description`; `/resume:skills` reuses it.
 
 Work out the target role: from what the person says, a job description they paste, or their current title. Pick the closest rubric under `rubrics/`. If none fits (a solutions architect, designer, PM or contact center role, for example), write a custom rubric with the same shape as `role.json`: four categories summing to 100, a bonus up to 15, and a one-line description per category. Put it in `target.custom_rubric` and set `target.rubric` to `"custom"`. Say which rubric you used, and why, in the chat reply.
 
@@ -78,4 +78,4 @@ Keep it short. Include:
 - the bullet average, with how many bullets are at 7 or above
 - the planned mix (e.g. "8 XYZ, 10 strong, 2 keep, 6 merge, 4 cut: 40% XYZ")
 - the top three fixes
-- the next step: `/resume:improve` to answer the questions one bullet at a time.
+- the next step: `/resume:improve` to answer the questions one bullet at a time. Then `/resume:skills` and `/resume:summary`, which unlock once the bullets are done, and finally `/resume:build`.

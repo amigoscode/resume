@@ -1,5 +1,7 @@
 # Scoring and rewriting the professional summary
 
+The summary is written last (`/resume:summary`), after the bullets and skills, because it's built from them.
+
 Based on the guidance at https://www.faangtechleads.com/resume/professional-summary, plus what worked in practice.
 
 ## What a good summary does

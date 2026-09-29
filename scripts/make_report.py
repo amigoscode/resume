@@ -12,9 +12,13 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
+import signal
 import shutil
 import subprocess
 import sys
+import tempfile
+import time
 from html import escape
 from pathlib import Path
 
@@ -180,7 +184,9 @@ def build_html(r: dict) -> str:
   <div class="steps">
     <div class="step done"><b>1 · /resume:analyse</b><span>This report: every section scored, questions for each weak bullet.</span></div>
     <div class="step"><b>2 · /resume:improve</b><span>Answer the questions one bullet at a time. Claude rewrites each one with you.</span></div>
-    <div class="step"><b>3 · /resume:build</b><span>Final LaTeX resume and PDF, 2 pages max.</span></div>
+    <div class="step"><b>3 · /resume:skills</b><span>Tailor skills to a job description or the market. Unlocks after the bullets.</span></div>
+    <div class="step"><b>4 · /resume:summary</b><span>Write the summary last, from the finished resume.</span></div>
+    <div class="step"><b>5 · /resume:build</b><span>Final LaTeX resume and PDF, 2 pages max.</span></div>
   </div>
 </section>"""
 
@@ -324,12 +330,31 @@ def main() -> None:
     if not chrome:
         print(f"wrote {html_path}\nNo Chrome/Chromium/Edge found: open the HTML and print to PDF (A4, no margins).", file=sys.stderr)
         sys.exit(2)
-    subprocess.run(
-        [chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=8000",
-         f"--print-to-pdf={pdf}", html_path.as_uri()],
-        check=True, capture_output=True,
-    )
-    print(f"wrote {pdf}")
+    # A throwaway profile keeps headless Chrome independent of any open Chrome window.
+    # Chrome sometimes writes the PDF and then lingers, so success is "a fresh PDF exists".
+    err = ""
+    for _ in range(2):
+        if pdf.exists():
+            pdf.unlink()
+        with tempfile.TemporaryDirectory() as profile:
+            cmd = [chrome, "--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+                   f"--user-data-dir={profile}", "--no-pdf-header-footer", "--virtual-time-budget=8000",
+                   f"--print-to-pdf={pdf}", html_path.as_uri()]
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
+            deadline = time.time() + 60
+            while time.time() < deadline and proc.poll() is None and not (pdf.exists() and pdf.stat().st_size > 0):
+                time.sleep(0.5)
+            time.sleep(1)  # let Chrome finish flushing the file
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)  # Chrome plus its helper processes
+            except ProcessLookupError:
+                pass
+            _, stderr = proc.communicate()
+        if pdf.exists() and pdf.stat().st_size > 0:
+            print(f"wrote {pdf}")
+            return
+        err = (stderr or "").strip()[-800:]
+    sys.exit(f"Chrome could not print the report (see below). The HTML is at {html_path}; open it and print to PDF.\n{err}")
 
 
 if __name__ == "__main__":

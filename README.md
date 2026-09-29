@@ -8,11 +8,15 @@ A Claude Code plugin that reviews your CV like a hiring rubric would, helps you 
 
 ## Commands
 
-| Command | What it does | Output |
-|---|---|---|
-| `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. Asks whether you want a summary at all. It plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (Amigoscode branded) and `review.json` |
-| `/resume:improve` | Goes one bullet at a time: asks the questions, rewrites the bullet with your answers, and re-scores it. Then does the same for the summary and education. It keeps a balance: about a third of the bullets get XYZ with a real number, and the rest are strong without one. It never invents numbers. | updated `review.json` and a scored preview PDF |
-| `/resume:build` | Renders the final resume on a modified [Jake's Resume](https://github.com/jakegut/resume) template. Asks whether to include a summary, checks the resume is no more than 2 pages and that no line runs past the margin. | `<First_Last>_Resume.tex` and `.pdf` |
+Run them in order. `/resume:skills` and `/resume:summary` stay locked until the steps before them are done, because both are built from the finished bullets.
+
+| Step | Command | What it does | Output |
+|---|---|---|---|
+| 1 | `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. Plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (Amigoscode branded) and `review.json` |
+| 2 | `/resume:improve` | Goes one bullet at a time: asks the questions, rewrites the bullet from your answers and re-scores it, then covers education. Keeps a balance: about a third of the bullets get XYZ with a real number, and the rest are strong without one. Never invents numbers. | updated `review.json` and a scored preview PDF |
+| 3 | `/resume:skills` | Tailors the Skills section to a job description you paste, to current postings for your target role, or both. Shows which keywords your bullets already back up, asks you about the gaps, and only adds skills you confirm. **Needs step 2 done.** | new skills lines and keyword coverage before → after |
+| 4 | `/resume:summary` | Asks whether you want a summary at all. If you do, writes it last from the finished bullets and skills. **Needs steps 2 and 3 done.** | a two-sentence summary, or none |
+| 5 | `/resume:build` | Renders the final resume on a modified [Jake's Resume](https://github.com/jakegut/resume) template. Checks it's no more than 2 pages and that no line runs past the margin. Can output the `.tex` only. | `<First_Last>_Resume.tex` and `.pdf` |
 
 Everything for one person lives in `./<first-last>/`. `review.json` carries the state between commands, so you can stop and pick up again later.
 
@@ -68,6 +72,8 @@ Then:
 .claude-plugin/          plugin + marketplace manifests
 skills/analyse/          /resume:analyse
 skills/improve/          /resume:improve
+skills/skills/           /resume:skills
+skills/summary/          /resume:summary
 skills/build/            /resume:build
 references/              bullet and summary rubrics, review.json schema
 rubrics/                 hiring rubrics per role (role.json + criteria.md)
@@ -75,6 +81,7 @@ report/                  report stylesheet, Amigoscode wordmark and fonts
 scripts/make_report.py   review.json -> branded review PDF
 scripts/render_tex.py    review.json -> resume .tex (with --scores for a scored preview)
 scripts/build.sh         .tex -> .pdf, page count and margin-overflow check
+scripts/progress.py      pipeline status; blocks skills/summary until the steps before are done
 assets/template.tex      the LaTeX template
 examples/jane-doe/       a sample review.json and its report
 ```
