@@ -12,7 +12,7 @@ Run them in order. `/resume:skills` and `/resume:summary` stay locked until the 
 
 | Step | Command | What it does | Output |
 |---|---|---|---|
-| 1 | `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. Plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (Amigoscode branded) and `review.json` |
+| 1 | `/resume:analyse` | Scores the whole CV: fit for the target role (hiring-agent style rubric), every experience bullet 0–10, the summary, skills, education and format. Plans each bullet (XYZ, strong without a metric, keep, merge or cut) and writes the questions you need to answer. | `<First_Last>_CV_Review.pdf` (amigoscode-pdf house style) and `review.json` |
 | 2 | `/resume:improve` | Goes one bullet at a time: asks the questions, rewrites the bullet from your answers and re-scores it, then covers education. Keeps a balance: about a third of the bullets get XYZ with a real number, and the rest are strong without one. Never invents numbers. | updated `review.json` and a scored preview PDF |
 | 3 | `/resume:skills` | Tailors the Skills section to a job description you paste, to current postings for your target role, or both. Shows which keywords your bullets already back up, asks you about the gaps, and only adds skills you confirm. **Needs step 2 done.** | new skills lines and keyword coverage before → after |
 | 4 | `/resume:summary` | Asks whether you want a summary at all. If you do, writes it last from the finished bullets and skills. **Needs steps 2 and 3 done.** | a two-sentence summary, or none |
@@ -57,7 +57,8 @@ In Claude Code:
 
 You'll also need:
 - **A LaTeX compiler:** `brew install tectonic`. It's about 20 MB and builds in seconds. `pdflatex` works too.
-- **Google Chrome, Chromium or Edge:** used to print the branded report to PDF.
+- **WeasyPrint:** `pipx install weasyprint`. It renders the review report in the [amigoscode-pdf](vendor/amigoscode-pdf) house style.
+- **Inter font:** installed locally, for the report.
 - **Python 3.9+:** the scripts use only the standard library.
 
 Then:
@@ -77,8 +78,8 @@ skills/summary/          /resume:summary
 skills/build/            /resume:build
 references/              bullet and summary rubrics, review.json schema
 rubrics/                 hiring rubrics per role (role.json + criteria.md)
-report/                  report stylesheet, Amigoscode wordmark and fonts
-scripts/make_report.py   review.json -> branded review PDF
+vendor/amigoscode-pdf/   the amigoscode-pdf builder (used when the skill isn't installed)
+scripts/make_report.py   review.json -> review PDF via amigoscode-pdf
 scripts/render_tex.py    review.json -> resume .tex (with --scores for a scored preview)
 scripts/build.sh         .tex -> .pdf, page count and margin-overflow check
 scripts/progress.py      pipeline status; blocks skills/summary until the steps before are done
@@ -99,4 +100,4 @@ python3 scripts/make_report.py examples/jane-doe/review.json
 - Resume template: [jakegut/resume](https://github.com/jakegut/resume) by Jake Gutierrez, based on [sb2nov/resume](https://github.com/sb2nov/resume). MIT.
 - Role rubrics: adapted from [interviewstreet/hiring-agent](https://github.com/interviewstreet/hiring-agent) by HackerRank. MIT, see `rubrics/LICENSE-hiring-agent`.
 - Summary guidance: [FAANG Tech Leads](https://www.faangtechleads.com/resume/professional-summary).
-- Fonts: Epilogue and JetBrains Mono, both SIL Open Font License.
+- Report style: amigoscode-pdf, the Amigoscode print guideline (bundled in `vendor/amigoscode-pdf`).

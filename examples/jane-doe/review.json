@@ -275,9 +275,9 @@
   "extra_sections": [],
   "format_checks": [
     {
-      "check": "Fits on one page",
+      "check": "2 pages or fewer",
       "status": "pass",
-      "note": "Half a page to spare."
+      "note": "One page, with room to spare."
     },
     {
       "check": "Role \u2013 Company | Date | Location on one line",

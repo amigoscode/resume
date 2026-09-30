@@ -1,6 +1,6 @@
 ---
 name: analyse
-description: Full analysis of a CV or resume. Scores it against a hiring rubric for the target role (hiring-agent style, intern to senior engineer or engineering manager, or a custom rubric for any other role), scores every experience bullet 0-10, the professional summary, skills, education and format, writes the questions needed to improve each weak bullet, and produces an Amigoscode-branded PDF report of what to improve. Use when someone shares a CV and wants it reviewed, rated, scored, critiqued, "analysed", checked against a role, or asks what to improve, even if they don't say "analyse". Step 1 of /resume:analyse → /resume:improve → /resume:skills → /resume:summary → /resume:build.
+description: Full analysis of a CV or resume. Scores it against a hiring rubric for the target role (hiring-agent style, intern to senior engineer or engineering manager, or a custom rubric for any other role), scores every experience bullet 0-10, the professional summary, skills, education and format, writes the questions needed to improve each weak bullet, and produces an Amigoscode-branded PDF report of what to improve (always rendered with the amigoscode-pdf house style). Use when someone shares a CV and wants it reviewed, rated, scored, critiqued, "analysed", checked against a role, or asks what to improve, even if they don't say "analyse". Step 1 of /resume:analyse → /resume:improve → /resume:skills → /resume:summary → /resume:build.
 ---
 
 # /resume:analyse
@@ -17,7 +17,7 @@ The plugin root is two directories above this skill's base directory. Paths belo
 - `references/bullets.md`: the 0–10 bullet rubric and the XYZ/strong balance rules.
 - `references/summary.md`: the summary rubric.
 - `rubrics/<role>/role.json` and `criteria.md`: hiring rubrics for software_engineering_intern, junior_software_engineer, mid_level_software_engineer, senior_software_engineer and engineering_manager.
-- `scripts/make_report.py`: renders the branded report PDF from `review.json`.
+- `scripts/make_report.py`: builds the review PDF from `review.json` with the **amigoscode-pdf** house style (the `/amigoscode-pdf` skill's `build_pdf.py`: logo cover, numbered sections, verdict tables, running footer). It uses the installed skill at `~/.claude/skills/amigoscode-pdf` when present, otherwise the copy bundled in `vendor/amigoscode-pdf`.
 - `scripts/render_tex.py` and `scripts/build.sh`: render and build a resume PDF (used here only for the page-count check).
 
 ## Steps
@@ -66,9 +66,11 @@ Save to `./<first-last>/review.json`, then run:
 python3 <plugin-root>/scripts/make_report.py ./<first-last>/review.json
 ```
 
-This writes `<First_Last>_CV_Review.pdf` (and the `.html`) next to `review.json`. It needs Google Chrome, Chromium or Edge. If none is found, the script leaves the HTML for the person to print. Open the PDF on macOS with `open`.
+The report always goes through amigoscode-pdf; don't build it any other way. The script writes `<First_Last>_CV_Review-body.html` (the body fragment), `<First_Last>_CV_Review.html` and `<First_Last>_CV_Review.pdf` next to `review.json`, and renders with WeasyPrint.
 
-Look at the rendered pages (convert a couple with `pdftoppm -png -r 60` and view them) to catch layout problems before handing it over.
+amigoscode-pdf's print guideline applies to everything you write into `review.json` that ends up in the report (reasons, questions, notes, top fixes): no em or en dashes (use commas, full stops or "to"), no emoji, plain direct sentences. The build fails if its guard rails trip; fix the text in `review.json` and rerun, never bypass them. If WeasyPrint is missing, suggest `pipx install weasyprint`.
+
+Check the render as amigoscode-pdf says: `pdfinfo` for the page count, then `pdftoppm -png -r 50` a few pages and look for orphaned headings, badly split tables and an empty last page. Open the PDF on macOS with `open`.
 
 ### 6. Reply
 
