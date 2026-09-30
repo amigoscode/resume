@@ -11,8 +11,6 @@ See references/components.md for every supported block. The script wraps it
 in the cover page and stylesheet, runs the guard rails, writes <out>.html
 next to the PDF and renders the PDF with WeasyPrint.
 """
-from __future__ import annotations
-
 import argparse
 import base64
 import html

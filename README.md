@@ -59,7 +59,7 @@ You'll also need:
 - **A LaTeX compiler:** `brew install tectonic`. It's about 20 MB and builds in seconds. `pdflatex` works too.
 - **WeasyPrint:** `pipx install weasyprint`. It renders the review report in the [amigoscode-pdf](vendor/amigoscode-pdf) house style.
 - **Inter font:** installed locally, for the report.
-- **Python 3.9+:** the scripts use only the standard library.
+- **Python 3.10+:** the scripts use only the standard library.
 
 Then:
 
