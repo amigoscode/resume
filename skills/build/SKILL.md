@@ -47,6 +47,7 @@ The `.tex` is always written first, so it exists even if the PDF build fails or 
 These came from real feedback; keep them unless the person asks otherwise:
 - **Header**: the name, then one line: `location | phone | email | LinkedIn` (and GitHub). No job title under the name.
 - **Role headers**: one line, **Role** – *Company* on the left and `Start – End | Location` on the right.
+- **Education entries**: always two lines. Top: **School**, Location on the left and *Start – End* on the right. Below: *Degree* (e.g. *BSc (Hons) Computer Science*) on the left and *grade* (e.g. *First-class honours (1:1)*) on the right; the right side is left blank if there is no grade. The renderer's `\resumeEducation` macro does this; don't use `\resumeSubheading` for education.
 - **Section order**: Summary, Experience, Skills, then any extra sections (e.g. Certifications), then Education.
 - **Leave out**: skill bars, soft-skill grids, Training and Languages sections, unless the person asks for them.
 

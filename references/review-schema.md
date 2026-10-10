@@ -87,11 +87,12 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
 
   "education": [
     {
-      "degree": "B.Sc. in Computer Science",
+      "degree": "BSc (Hons) Computer Science",
       "school": "University of Leeds",
       "location": "Leeds, UK",
       "start": "2015",
       "end": "2019",
+      "grade": "First-class honours (1:1)",       // classification, GPA or grade; "" if none
       "score": 7,
       "notes": ["..."],
       "questions": [],

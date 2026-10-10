@@ -40,7 +40,7 @@ Fill `basics`, `experience`, `skills` and `education` exactly as the CV says, cl
 - **Bullets**: score each one 0–10 with `references/bullets.md` and give a one-line `reason`.
 - **Summary**: score it with `references/summary.md` and fill `criteria` with pass, partial or fail and a note for each.
 - **Skills**: score 0–10 on relevance to the target, grouping, evidence in bullets, and padding. Give 2–4 notes.
-- **Education**: score 0–10 per entry. Check relevance, format, and whether certifications or training belong in their own line. Give notes, plus questions if something is missing.
+- **Education**: score 0–10 per entry. Check relevance, format, and whether certifications or training belong in their own line. Capture the classification or grade in `grade` when the CV gives one (e.g. "First-class honours (1:1)", "GPA 3.8/4.0"); if it doesn't, add a question asking for it. Give notes, plus questions if something is missing.
 - **Format checks**: 2 pages or fewer (render with `scripts/render_tex.py` and run `scripts/build.sh` to check), consistent dates, one-line role headers, ATS-readable, real contact details.
 
 ### 4. Plan the improvements, with a balance

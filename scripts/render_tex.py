@@ -113,10 +113,11 @@ def education(items: list) -> str:
     out = ["\\section{Education}", "  \\resumeSubHeadingListStart"]
     for e in items:
         degree = e.get("rewrite") or e["degree"]
+        loc = f", {esc(e['location'])}" if e.get("location") else ""
         out.append(
-            "    \\resumeSubheading\n"
-            f"      {{{esc(degree)}}}{{{dates(e.get('start', ''), e.get('end', ''))}}}\n"
-            f"      {{{esc(e['school'])}}}{{{esc(e.get('location', ''))}}}"
+            "    \\resumeEducation\n"
+            f"      {{{esc(e['school'])}}}{{{loc}}}{{{dates(e.get('start', ''), e.get('end', ''))}}}\n"
+            f"      {{{esc(degree)}}}{{{esc(e.get('grade') or '')}}}"
         )
     out.append("  \\resumeSubHeadingListEnd")
     return "\n".join(out) + "\n"

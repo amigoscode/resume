@@ -64,6 +64,15 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+% Education: **School**, Location | *dates* on top, *Degree* | *grade* below
+\newcommand{\resumeEducation}[5]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1}#2 & \textit{#3} \\
+      \textit{#4} & \textit{#5} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
 \newcommand{\resumeSubSubheading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -157,9 +166,9 @@
 %-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
-    \resumeSubheading
-      {B.Sc. in Computer Science}{2015 -- 2019}
-      {University of Leeds}{Leeds, UK}
+    \resumeEducation
+      {University of Leeds}{, Leeds, UK}{2015 -- 2019}
+      {BSc (Hons) Computer Science}{First-class honours (1:1)}
   \resumeSubHeadingListEnd
 
 
