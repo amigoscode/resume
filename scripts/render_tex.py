@@ -139,6 +139,47 @@ def short_degree(s: str) -> str:
     return s
 
 
+_CLASSES = [
+    (r"\b(?:1:1|1\.1|first|1st)\b", "First-class honours (1:1)"),
+    (r"\b(?:2:1|2\.1|upper second|2nd upper)\b", "Upper second-class honours (2:1)"),
+    (r"\b(?:2:2|2\.2|lower second|2nd lower)\b", "Lower second-class honours (2:2)"),
+    (r"\b(?:third|3rd)\b", "Third-class honours"),
+    (r"\bsumma cum laude\b", "Summa cum laude"),
+    (r"\bmagna cum laude\b", "Magna cum laude"),
+    (r"\bcum laude\b", "Cum laude"),
+    (r"\bdistinction\b", "Distinction"),
+    (r"\bmerit\b", "Merit"),
+]
+
+
+def _num(x: str) -> str:
+    """GPA scales read 4.0 and 5.0, but 10 and 100 stay whole."""
+    if float(x) >= 10:
+        return x.split(".")[0] if float(x).is_integer() else x
+    return x if "." in x else f"{x}.0"
+
+
+def short_grade(s: str) -> str:
+    """'gpa: 3.8 out of 4' -> 'GPA 3.8/4.0', '2.1' -> 'Upper second-class honours (2:1)', '85 percent' -> '85%'."""
+    s = re.sub(r"\s+", " ", (s or "").strip()).rstrip(".")
+    if not s:
+        return ""
+    m = re.search(r"\b(c?gpa)\b\W*(\d+(?:\.\d+)?)(?:\s*(?:/|out of|of)\s*(\d+(?:\.\d+)?))?", s, re.I)
+    if m:
+        out = f"{m.group(1).upper()} {m.group(2)}"
+        return out + (f"/{_num(m.group(3))}" if m.group(3) else "")
+    m = re.fullmatch(r"(\d+(?:\.\d+)?)\s*/\s*(\d+(?:\.\d+)?)", s)
+    if m and float(m.group(2)) in (4, 4.3, 5, 10):
+        return f"GPA {m.group(1)}/{_num(m.group(2))}"
+    m = re.fullmatch(r"(\d+(?:\.\d+)?)\s*(?:%|percent|per cent)", s, re.I)
+    if m:
+        return f"{m.group(1)}%"
+    for pat, label in _CLASSES:
+        if re.search(pat, s, re.I):
+            return label
+    return s[0].upper() + s[1:]
+
+
 def education(items: list) -> str:
     out = ["\\section{Education}", "  \\resumeSubHeadingListStart"]
     for e in items:
@@ -147,7 +188,7 @@ def education(items: list) -> str:
         out.append(
             "    \\resumeEducation\n"
             f"      {{{esc(e['school'])}}}{{{loc}}}{{{dates(e.get('start', ''), e.get('end', ''))}}}\n"
-            f"      {{{esc(degree)}}}{{{esc(e.get('grade') or '')}}}"
+            f"      {{{esc(degree)}}}{{{esc(short_grade(e.get('grade') or ''))}}}"
         )
     out.append("  \\resumeSubHeadingListEnd")
     return "\n".join(out) + "\n"

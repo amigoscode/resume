@@ -92,7 +92,7 @@ One file per person, at `./<first-last>/review.json`. `/resume:analyse` creates 
       "location": "Leeds, UK",
       "start": "2015",
       "end": "2019",
-      "grade": "First-class honours (1:1)",       // classification, GPA or grade; "" if none
+      "grade": "First-class honours (1:1)",       // classification, GPA (with scale, "GPA 3.8/4.0"), % or honours; "" if none. render_tex.py normalises the format
       "score": 7,
       "notes": ["..."],
       "questions": [],
