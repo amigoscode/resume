@@ -109,10 +109,40 @@ def skills(groups: list) -> str:
     )
 
 
+_DEGREES = [
+    (r"bachelor(?:'?s)? of science|b\.?\s?sc\.?|b\.s\.?", "BSc"),
+    (r"bachelor(?:'?s)? of arts|b\.a\.?", "BA"),
+    (r"bachelor(?:'?s)? of engineering|b\.?\s?eng\.?", "BEng"),
+    (r"bachelor(?:'?s)? of technology|b\.?\s?tech\.?", "BTech"),
+    (r"master(?:'?s)? of science|m\.?\s?sc\.?|m\.s\.?", "MSc"),
+    (r"master(?:'?s)? of arts|m\.a\.?", "MA"),
+    (r"master(?:'?s)? of engineering|m\.?\s?eng\.?", "MEng"),
+    (r"master(?:'?s)? of technology|m\.?\s?tech\.?", "MTech"),
+    (r"master(?:'?s)? of business administration|m\.b\.a\.?", "MBA"),
+    (r"doctor of philosophy|ph\.?\s?d\.?", "PhD"),
+]
+
+
+def short_degree(s: str) -> str:
+    """'Bachelor of Science in Computer Science (Honours)' -> 'BSc (Hons) Computer Science'."""
+    s = s.strip()
+    hons = bool(re.search(r"\(?\b(?:with\s+)?hon(?:ou?r)?s\b\.?\)?", s, re.I))
+    for pat, short in _DEGREES:
+        m = re.match(rf"(?:{pat})(?=[\s,(]|$)", s, re.I)
+        if m:
+            rest = s[m.end():]
+            if hons:
+                rest = re.sub(r"\(?\b(?:with\s+)?hon(?:ou?r)?s\b\.?\)?", "", rest, flags=re.I)
+            rest = re.sub(r"^[\s,]*(?:degree\s+)?(?:in|of)\s+", " ", rest, flags=re.I)
+            rest = re.sub(r"\s+", " ", rest).strip(" ,")
+            return f"{short}{' (Hons)' if hons else ''}{' ' + rest if rest else ''}"
+    return s
+
+
 def education(items: list) -> str:
     out = ["\\section{Education}", "  \\resumeSubHeadingListStart"]
     for e in items:
-        degree = e.get("rewrite") or e["degree"]
+        degree = short_degree(e.get("rewrite") or e["degree"])
         loc = f", {esc(e['location'])}" if e.get("location") else ""
         out.append(
             "    \\resumeEducation\n"

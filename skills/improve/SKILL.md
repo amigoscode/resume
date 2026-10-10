@@ -48,7 +48,7 @@ The person can say "skip", "keep", "cut" or "merge with e2-b1" at any time. Upda
 
 Skills and the summary are not part of this step. They come after the bullets (`/resume:skills`, then `/resume:summary`), because both are built from the finished bullets. If the person asks to do them now, finish or settle the remaining bullets first.
 
-1. **Education**: ask the education questions (e.g. which trainings are formal certifications, and the degree classification or grade if `grade` is empty), and apply changes once they approve. Write the degree in the short form, e.g. "BSc (Hons) Computer Science", not "Bachelor of Science in ...". Confirmed certifications go in `extra_sections` as a Certifications line.
+1. **Education**: ask the education questions (e.g. which trainings are formal certifications, and the degree classification or grade if `grade` is empty), and apply changes once they approve. Always write the degree in the short form, e.g. "BSc (Hons) Computer Science", "MSc Data Science", never "Bachelor of Science in ..." or "B.Sc. in ...". Ask whether it was an honours degree if that's unclear, and don't add (Hons) unless they confirm it. Confirmed certifications go in `extra_sections` as a Certifications line.
 2. **Mark the bullets done** once every `xyz` and `strong` bullet has a rewrite, or has been switched to keep, merge or cut:
 
    ```bash
